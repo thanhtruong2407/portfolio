@@ -169,6 +169,8 @@ window.portfolioContent = {
       title: "Improving Operations in a Complex Hospitality System",
       summary: "Fragmented workflows slowed hotel operations -> restructured cross-module task flows -> improved usability, consistency, and adoption.",
       company: "VINHMS (VinGroup)",
+      heroImageSrc: "./assets/img-cihms-tumbnail.png",
+      heroImageAlt: "CiHMS hospitality platform overview screen",
       tags: [
         { label: "System Design", accent: true },
         { label: "Product Thinking" }

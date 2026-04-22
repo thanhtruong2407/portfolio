@@ -69,10 +69,6 @@
       transform: translateY(0);
     }
 
-    body.popup-open {
-      overflow: hidden;
-    }
-
     .site-header.is-scrolled {
       border-color: rgba(148, 163, 184, 0.25);
       box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
@@ -88,26 +84,6 @@
 
     .nav-list.is-open {
       display: flex !important;
-    }
-
-    .popup-overlay {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
-    }
-
-    .popup-overlay.is-open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .popup-panel {
-      transform: translateY(20px);
-      transition: transform 0.2s ease;
-    }
-
-    .popup-overlay.is-open .popup-panel {
-      transform: translateY(0);
     }
 
     .menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(1) {
@@ -333,54 +309,6 @@
       <a class="text-[11px] font-semibold uppercase tracking-[0.2em] transition hover:text-brand-600 dark:hover:text-brand-300" href="#hero">Back to top</a>
     </div>
   </footer>
-
-  <div
-    class="popup-overlay fixed inset-0 z-[100] bg-slate-950/45 backdrop-blur-sm"
-    id="project-popup"
-    aria-hidden="true"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="popup-title"
-  >
-    <div class="popup-panel absolute inset-4 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-950 sm:inset-6 lg:inset-8">
-      <div class="popup-progress absolute left-0 top-0 z-10 h-1 bg-brand-600" data-popup-progress></div>
-
-      <div class="popup-nav flex min-h-[76px] items-center justify-between gap-4 border-b border-slate-200 bg-white/90 px-4 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/90 sm:px-6">
-        <button class="popup-button inline-flex min-h-10 items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-700 transition hover:border-brand-300 hover:text-brand-600 dark:border-slate-700 dark:text-slate-200 dark:hover:border-brand-400 dark:hover:text-brand-300" type="button" data-popup-close>
-          <span aria-hidden="true"><-</span>
-          <span>Back</span>
-        </button>
-        <p class="popup-index hidden text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400 sm:block" data-popup-index>Selected Work</p>
-        <button class="popup-button inline-flex min-h-10 items-center rounded-full border border-slate-200 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-700 transition hover:border-brand-300 hover:text-brand-600 dark:border-slate-700 dark:text-slate-200 dark:hover:border-brand-400 dark:hover:text-brand-300" type="button" data-popup-close aria-label="Close project details">
-          <span>Close</span>
-        </button>
-      </div>
-
-      <div class="popup-body h-[calc(100%-76px)] overflow-y-auto" data-popup-body tabindex="-1">
-        <section class="popup-hero border-b border-slate-200 px-4 py-12 dark:border-slate-800 sm:px-6 lg:px-8">
-          <div class="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[minmax(0,1fr)_280px]">
-            <div class="popup-copy">
-              <div class="popup-tags flex flex-wrap gap-3" data-popup-tags></div>
-              <h2 class="popup-title mt-4 text-4xl font-bold tracking-[-0.05em] text-slate-950 dark:text-white sm:text-5xl" id="popup-title" data-popup-title></h2>
-              <p class="popup-role mt-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400" data-popup-role></p>
-              <p class="popup-summary mt-5 max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-300" data-popup-summary></p>
-            </div>
-
-            <aside class="popup-meta grid gap-4" data-popup-meta></aside>
-          </div>
-        </section>
-
-        <div data-popup-sections></div>
-
-        <section class="popup-footer border-t border-slate-200 bg-slate-100/70 px-4 py-12 dark:border-slate-800 dark:bg-slate-900/40 sm:px-6 lg:px-8">
-          <div class="mx-auto w-full max-w-7xl">
-            <p class="popup-section-label mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400" data-popup-outcomes-label>Outcomes / placeholders</p>
-            <div class="outcome-grid grid gap-4 sm:grid-cols-2 xl:grid-cols-3" data-popup-outcomes></div>
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
 
   <script src="./content.js"></script>
   <script src="./app.js"></script>
