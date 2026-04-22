@@ -71,6 +71,23 @@ if (!window.portfolioContent) {
     return supporting ? createPlaceholderProjectFromSupporting(supporting) : null;
   }
 
+  function getProjectSequence() {
+    const featured = (content.featuredProjects || []).map((project) => ({ ...project, detailLevel: "rich" }));
+    const supporting = (content.supportingProjects || []).map(createPlaceholderProjectFromSupporting);
+    return [...featured, ...supporting];
+  }
+
+  function getAdjacentProjects(id) {
+    const sequence = getProjectSequence();
+    const currentIndex = sequence.findIndex((project) => project.id === id);
+    if (currentIndex === -1) return { previous: null, next: null };
+
+    return {
+      previous: currentIndex > 0 ? sequence[currentIndex - 1] : null,
+      next: currentIndex < sequence.length - 1 ? sequence[currentIndex + 1] : null,
+    };
+  }
+
   function getProjectSections(project) {
     if (Array.isArray(project.popupSections) && project.popupSections.length) return project.popupSections;
     return [
@@ -93,5 +110,6 @@ if (!window.portfolioContent) {
     createPlaceholderProjectFromSupporting,
     getProjectById,
     getProjectSections,
+    getAdjacentProjects,
   };
 })();

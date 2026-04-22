@@ -167,146 +167,281 @@ window.portfolioContent = {
       thumb: "PMS",
       role: "Hospitality / Platform",
       title: "Improving Operations in a Complex Hospitality System",
-      summary: "Fragmented workflows slowed hotel operations -> restructured cross-module task flows -> improved usability, consistency, and adoption.",
+      summary: "Fragmented hotel workflows and inconsistent modules reduced efficiency -> redesigned workflow structure and system behavior -> improved usability, adoption, and operational confidence.",
       company: "VINHMS (VinGroup)",
-      heroImageSrc: "./assets/img-cihms-tumbnail.png",
-      heroImageAlt: "CiHMS hospitality platform overview screen",
+      showcaseImageSrc: "./assets/img-cihms-thumbnail.png",
+      showcaseImageAlt: "CiHMS product mockup overview",
       tags: [
         { label: "System Design", accent: true },
-        { label: "Product Thinking" }
+        { label: "Workflow Optimization" },
+        { label: "Enterprise UX" }
       ],
       navIndex: "04 / Selected Work",
-      roleDetail: "Enterprise operations case study",
-      description: "Redesigned cross-module workflows in a 35+ module hospitality system to reduce operational complexity, improve usability, and support adoption across multiple properties.",
+      roleDetail: "Product Designer (UX/UI)",
+      description: "Improved workflow structure and cross-module consistency in a 35+ module hospitality platform to reduce cognitive load, support real operational tasks, and strengthen adoption across multiple properties.",
       timeline: "2020-2021",
       duration: "1+ year",
-      overview: "CiHMS is a hospitality management platform used across 40+ properties, with 35+ modules supporting reservations, front office, housekeeping, maintenance, and daily hotel operations. As the system scaled, fragmented workflows and inconsistent interfaces increased cognitive load for staff and made efficient task completion harder across properties.",
-      overviewCards: [
-        {
-          label: "Your responsibility",
-          body: "Led workflow optimization across key operational modules by identifying pain points, aligning stakeholder input, restructuring task flows, and contributing to design-system improvements for consistency and scale."
-        },
-        {
-          label: "Team context",
-          body: "Worked within the VINHMS product environment on an operations-heavy enterprise platform used by hotel staff, branch teams, and head office stakeholders with different priorities, habits, and constraints."
-        }
-      ],
-      dynamicLabel: "Project type",
-      dynamicTitle: "System and workflow improvement",
-      dynamicBadge: "Hospitality / enterprise",
+      hideOutcomesSummary: true,
       popupSections: [
         {
           label: "Context",
           title: "Platform scale and operating environment",
           body: [
-            "CiHMS is a hospitality management platform used across 40+ properties, supporting hotel operations through 35+ modules such as Front Office, Housekeeping, and Maintenance.",
-            "As the system scaled, operational efficiency and usability became critical challenges."
+            "CiHMS is a large-scale hospitality management system supporting hotel operations across multiple properties, cities, and countries.",
+            "The platform includes 35+ modules and 100+ features, used daily by thousands of operational staff. As the system expanded, workflows became increasingly fragmented and inconsistent across modules."
+          ],
+          stats: [
+            { value: "35+", label: "Modules" },
+            { value: "100+", label: "Features" },
+            { value: "40+", label: "Properties" }
           ]
         },
         {
           label: "Problem",
-          title: "Fragmented workflows were slowing daily operations",
-          bullets: [
-            "As CiHMS expanded, workflows became fragmented across modules and UI inconsistencies increased.",
-            "Hotel staff struggled to complete daily tasks efficiently, leading to slower operations, higher cognitive load, and increased dependency on training."
-          ]
-        },
-        {
-          label: "Scope and role",
-          title: "Focused on cross-module operations and system consistency",
+          title: "System growth reduced usability and operational efficiency",
+          body: [
+            "As the product scaled, usability and operational efficiency declined because workflows and system behavior no longer matched real operational needs."
+          ],
           cards: [
             {
-              label: "Scope",
-              body: "Focused on optimizing cross-module workflows impacting daily operations, particularly in Front Office, Housekeeping, and Task Management."
+              label: "1. Fragmented workflows across modules",
+              body: "Staff had to switch between multiple modules to complete routine tasks, and there was no clear end-to-end task flow."
             },
             {
-              label: "Role",
-              body: "Led workflow optimization by identifying operational pain points, aligning stakeholders, and restructuring task flows across key modules. Contributed to improving the design system to ensure consistency and scalability."
+              label: "2. UI inconsistency",
+              body: "Different modules used inconsistent interaction patterns. This increased cognitive load, learning time, and reliance on training."
+            },
+            {
+              label: "3. System growth without a scalable structure",
+              body: "Features were added quickly without a unified foundation, and cross-dependencies created more complex control flows."
+            },
+            {
+              label: "4. Operational impact",
+              body: "Routine tasks took longer to complete, and the risk of errors increased during daily operations."
             }
           ]
         },
         {
-          label: "Challenges",
-          title: "Enterprise constraints that shaped the work",
+          label: "Product Goal",
+          title: "Improve operational efficiency with simpler and more consistent workflows",
+          body: [
+            "Improve operational efficiency by simplifying workflows, reducing cognitive load, and standardizing system behavior across modules."
+          ],
           bullets: [
-            "High system complexity with 35+ modules and cross-dependencies",
-            "Legacy UI inconsistencies across different modules",
-            "Risk of disrupting existing workflows used daily by staff",
-            "Diverse stakeholders including hotel staff, branch managers, and head office teams",
-            "Resistance to change and training overhead"
+            "Reduce task complexity and number of steps.",
+            "Improve usability perception.",
+            "Increase system adoption and preference."
           ]
         },
         {
-          label: "Process",
-          title: "How the workflow improvements were defined",
-          badge: "Understand / Define / Design",
+          label: "Role and Collaboration",
+          title: "Product design focused on workflow structure and cross-functional delivery",
+          body: [
+            "The work required balancing user needs, technical feasibility, and delivery constraints."
+          ],
+          cards: [
+            {
+              label: "Role",
+              body: "Product Designer (UX/UI) focused on system design, workflow optimization, and specification writing."
+            },
+            {
+              label: "Collaboration",
+              body: "Worked closely with Product Managers, Engineers, and operational teams to move from workflow decisions to build-ready specifications."
+            }
+          ]
+        },
+        {
+          label: "Approach",
+          title: "Moved from module-based thinking to workflow-based design",
+          badge: "Research / mapping / restructuring / delivery",
           steps: [
             {
-              title: "Understand",
-              text: "Conducted interviews with hotel staff across front desk, housekeeping, and operations roles to identify usability issues and workflow bottlenecks."
+              title: "Stakeholder and user research",
+              text: "Interviewed front desk staff, customer service teams, and VP-level stakeholders across branches and Head Office while observing real operational workflows. The main insight was that the system structure did not reflect how work was actually done."
             },
             {
-              title: "Define",
-              text: "Mapped cross-module workflows to identify inefficiencies, redundant steps, and unclear task transitions."
+              title: "Workflow analysis and mapping",
+              text: "Mapped end-to-end flows across key modules to identify redundant steps, inconsistent patterns, and breakpoints between modules, then reframed the system around workflows instead of isolated modules."
             },
             {
-              title: "Design",
-              text: "Restructured workflows, simplified task flows, and improved system consistency across modules."
+              title: "System restructuring",
+              text: "Redesigned task flows for consistency, improved navigation and information hierarchy, and standardized interaction patterns to better support booking, reservation handling, and operational speed."
+            },
+            {
+              title: "Collaboration with engineering",
+              text: "Translated the design into clear specifications, worked through technical constraints with engineers, and iterated to keep the solution practical and buildable."
             }
           ]
         },
         {
           label: "Solution",
-          title: "Changes made at workflow and system levels",
-          cards: [
+          title: "Improved workflows in the parts of the system where clarity and efficiency mattered most",
+          body: [
+            "Instead of redesigning isolated screens, the solution focused on improving workflows in critical areas where clarity and efficiency matter most."
+          ],
+          columns: [
             {
-              label: "Workflow optimization",
-              body: "Simplified task flows across modules, reducing unnecessary steps and improving task clarity."
+              title: "High-impact parts of the system",
+              bullets: [
+                "Front Office (check-in / check-out / reservation handling)",
+                "Housekeeping (room status & task coordination)",
+                "Task & Maintenance (cross-department workflows)",
+                "Channel Management (availability & pricing sync)",
+                "Package Control (guest service & upsell flows)"
+              ]
             },
             {
-              label: "System structure",
-              body: "Improved navigation and information hierarchy to help users move more seamlessly between modules."
-            },
-            {
-              label: "Design system improvement",
-              body: "Standardized UI patterns and components to ensure consistency and reduce cognitive load."
+              title: "Key improvements",
+              bullets: [
+                "Unified workflow structure across modules",
+                "Simplified task flows aligned with real operational behavior",
+                "Improved booking and reservation clarity",
+                "Reduced cognitive load for users",
+                "Created scalable design patterns for future modules"
+              ]
             }
           ]
         },
         {
-          label: "Key learnings",
-          title: "What this project reinforced",
-          bullets: [
-            "Workflow design has a direct impact on operational efficiency in complex systems.",
-            "Consistency across modules is critical for reducing cognitive load.",
-            "Balancing system improvements with existing user habits is key to adoption.",
-            "Stakeholder alignment is essential in enterprise product environments."
+          label: "Execution — Design System",
+          title: "Creating consistency at scale",
+          columns: [
+            {
+              title: "Impact",
+              body: "Reduced cognitive load, made onboarding easier for new users, and created a more scalable foundation for future modules."
+            },
+            {
+              title: "Execution",
+              bullets: [
+                "Defined reusable UI patterns across modules.",
+                "Standardized components and interaction behaviors.",
+                "Improved information hierarchy and layout consistency."
+              ]
+            }
+          ],
+          carousel: {
+            title: "Design system showcase",
+            slides: [
+              {
+                label: "Typography and main color",
+                imageSrc: "./assets/design-main-and-typo.png"
+              },
+              {
+                label: "Other palette color",
+                imageSrc: "./assets/design-other-palette.png"
+              },
+              {
+                label: "Spot Illustration",
+                imageSrc: "./assets/design-illustration.png"
+              },
+              {
+                label: "Iconography",
+                imageSrc: "./assets/design-iconography.png"
+              },
+              {
+                label: "Components",
+                imageSrc: "./assets/design-components.png"
+              }
+            ]
+          }
+        },
+        {
+          label: "Execution — Highlighted Modules",
+          title: "Core parts of the platform that shaped operational workflows",
+          body: [
+            "CiHMS consists of 35+ modules and 100+ features supporting end-to-end hotel operations."
+          ],
+          carousel: {
+            title: "Highlighted modules showcase",
+            slides: [
+              {
+                label: "Front Office",
+                description: "Handles reservations, check-in and check-out, pricing, and services. Directly affects guest-facing operations.",
+                imageSrc: "./assets/module-front-office.png"
+              },
+              {
+                label: "Housekeeping",
+                description: "Supports cleaning, maintenance, and service tasks. Requires clarity and real-time coordination.",
+                imageSrc: "./assets/module-house-keeping.png"
+              },
+              {
+                label: "Channel Management",
+                description: "Controls room availability across booking platforms. Critical for operational accuracy and revenue.",
+                imageSrc: "./assets/module-channel-management.png"
+              },
+              {
+                label: "OPS Inventory",
+                description: "Tracks inventory with audit trails. Supports accountability and operational visibility.",
+                imageSrc: "./assets/module-ops-inventory.png"
+              },
+              {
+                label: "Package Control",
+                description: "Supports contactless service flows and upsell-related features. Helps improve the guest experience.",
+                imageSrc: "./assets/module-packade-control.png"
+              },
+              {
+                label: "Task and Maintenance",
+                description: "Connects workflows across departments. Acts as a backbone for operational coordination.",
+                imageSrc: "./assets/module-task.png"
+              }
+            ]
+          }
+        },
+        {
+          label: "Results and Impact",
+          title: "Improved adoption, trust, and operational usability",
+          stats: [
+            { value: "85.11%", label: "Branch satisfaction", detail: "Rated Good or Very Good" },
+            { value: "76.34%", label: "Head Office satisfaction", detail: "Rated system positively" },
+            { value: "85.28%", label: "Branch preference", detail: "Preferred CiHMS over Opera" },
+            { value: "75.45%", label: "Head Office preference", detail: "Preferred CiHMS over Opera" },
+            { value: "3,300+", label: "Branch personnel" },
+            { value: "100+", label: "Head Office personnel" }
+          ],
+          cards: [
+            {
+              label: "Operational impact",
+              body: "Reduced friction in cross-module workflows, improved task execution speed, lowered dependency on training, and increased consistency across the system."
+            },
+            {
+              label: "UX improvement",
+              body: "Clarified booking and reservation details, made daily task handling easier, improved navigation, and aligned the interface more closely with real workflows."
+            },
+            {
+              label: "Product impact",
+              body: "Improved competitiveness against legacy systems like Opera, increased trust from operational teams, and established a more scalable system foundation."
+            }
           ]
-        }
-      ],
-      steps: [
-        {
-          title: "Understand",
-          text: "Conducted interviews with hotel staff across front desk, housekeeping, and operations roles to identify usability issues, workflow bottlenecks, and pain points in daily tasks."
         },
         {
-          title: "Define",
-          text: "Mapped cross-module workflows to surface redundant steps, unclear task transitions, and operational friction affecting Front Office, Housekeeping, and task management flows."
-        },
-        {
-          title: "Design",
-          text: "Restructured workflows, improved navigation and information hierarchy, and standardized interface patterns to reduce cognitive load and help users move more smoothly between modules."
-        },
-        {
-          title: "Impact",
-          text: "Improved usability and operational efficiency across multiple properties, strengthened consistency across modules, and supported stronger adoption with 85%+ positive user feedback over legacy workflows."
+          label: "Key Learnings",
+          title: "What this project reinforced about product and system design",
+          cards: [
+            {
+              label: "1. Workflow design drives business efficiency",
+              body: "Improving task flows has more impact than improving individual screens in isolation."
+            },
+            {
+              label: "2. Users think in tasks, not modules",
+              body: "Design should follow user intent and operational logic, not internal system architecture."
+            },
+            {
+              label: "3. Adoption matters as much as innovation",
+              body: "In enterprise systems, changes must balance improvement with familiarity."
+            },
+            {
+              label: "4. Consistency enables scalability",
+              body: "A stronger design system reduces cognitive load and supports long-term product growth."
+            }
+          ]
         }
       ],
       outcomesLabel: "Impact",
       outcomes: [
         { value: "40+", label: "Properties supported" },
-        { value: "35+", label: "Platform modules" },
-        { value: "85%+", label: "Positive user feedback" }
+        { value: "15+", label: "Cities supported" },
+        { value: "3", label: "Countries reached" },
+        { value: "85.28%", label: "Branch preference over Opera" }
       ]
     }
   ],

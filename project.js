@@ -21,14 +21,17 @@ const titleRoot = document.querySelector("[data-project-title]");
 const roleRoot = document.querySelector("[data-project-role]");
 const summaryRoot = document.querySelector("[data-project-summary]");
 const metaRoot = document.querySelector("[data-project-meta]");
-const mediaRoot = document.querySelector("[data-project-media]");
+const showcaseSectionRoot = document.querySelector("[data-project-showcase-section]");
+const showcaseRoot = document.querySelector("[data-project-showcase]");
 const detailSectionsRoot = document.querySelector("[data-project-detail-sections]");
+const outcomesSectionRoot = document.querySelector("[data-project-outcomes-section]");
 const outcomesLabelRoot = document.querySelector("[data-project-outcomes-label]");
 const outcomesRoot = document.querySelector("[data-project-outcomes]");
+const paginationRoot = document.querySelector("[data-project-pagination]");
 const foundRoot = document.querySelector("[data-project-found]");
 const notFoundRoot = document.querySelector("[data-project-not-found]");
 
-const { getProjectById, getProjectSections } = window.portfolioProjectData || {};
+const { getProjectById, getProjectSections, getAdjacentProjects } = window.portfolioProjectData || {};
 
 const MOON = "M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z";
 const SUN = "M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7zm0-4a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V4a1 1 0 0 1 1-1zm0 16a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1zm9-9h1a1 1 0 0 1 0 2h-1a1 1 0 0 1 0-2zM3 11H2a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2zm14.66-5.07.71-.71a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1-1.41-1.41zM5.63 17.66l-.71.71a1 1 0 0 1-1.41-1.41l.71-.71a1 1 0 0 1 1.41 1.41zm11.32 1.41-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1-1.41 1.41zM5.63 6.34 4.92 5.63a1 1 0 0 1 1.41-1.41l.71.71A1 1 0 0 1 5.63 6.34z";
@@ -71,25 +74,21 @@ function createMetaCard(item) {
   `;
 }
 
-function createHeroMedia(project) {
-  if (project.heroImageSrc) {
+function createProjectShowcase(project) {
+  if (project.showcaseImageSrc) {
     return `
-      <figure class="h-full overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-card dark:border-slate-800 dark:bg-slate-900">
+      <figure class="overflow-hidden rounded-[2rem]">
         <img
-          class="block h-full w-full object-cover"
-          src="${escapeHtml(project.heroImageSrc)}"
-          alt="${escapeHtml(project.heroImageAlt || project.title)}"
+          class="block w-full object-cover"
+          src="${escapeHtml(project.showcaseImageSrc)}"
+          alt="${escapeHtml(project.showcaseImageAlt || project.title)}"
           loading="eager"
         >
       </figure>
     `;
   }
 
-  return `
-    <div class="flex aspect-[5/4] items-center justify-center rounded-[1.5rem] border border-slate-200 bg-gradient-to-br from-brand-100 via-white to-slate-100 text-4xl font-bold tracking-[-0.04em] text-brand-300 dark:border-slate-800 dark:from-brand-500/15 dark:via-slate-900 dark:to-slate-900 dark:text-brand-500/40" aria-hidden="true">
-      <span>${escapeHtml(project.thumb)}</span>
-    </div>
-  `;
+  return "";
 }
 
 function createInfoCard(card) {
@@ -131,11 +130,131 @@ function createOutcomeCard(item) {
   `;
 }
 
+function createSectionColumn(column) {
+  const bullets = Array.isArray(column?.bullets) ? column.bullets : [];
+  return `
+    <div class="rounded-[1.25rem] border border-slate-200 bg-white p-6 shadow-card dark:border-slate-800 dark:bg-slate-900">
+      <h3 class="text-lg font-semibold tracking-[-0.02em] text-slate-950 dark:text-white">${escapeHtml(column.title || "")}</h3>
+      ${column.body ? `<p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">${escapeHtml(column.body)}</p>` : ""}
+      ${bullets.length ? `<div class="mt-5">${createBulletList(bullets)}</div>` : ""}
+    </div>
+  `;
+}
+
+function createCarouselSlideImage(slide) {
+  if (slide.imageSrc) return slide.imageSrc;
+
+  const palette = slide.palette || ["#6D50F0", "#A78BFA", "#E9D5FF"];
+  const title = String(slide.label || "").toUpperCase();
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+      <rect width="1600" height="900" fill="transparent"/>
+      <g opacity="0.18">
+        <circle cx="290" cy="220" r="170" fill="${palette[0]}"/>
+        <circle cx="1270" cy="230" r="150" fill="${palette[1]}"/>
+        <circle cx="1110" cy="660" r="230" fill="${palette[2]}"/>
+      </g>
+      <g opacity="0.95">
+        <rect x="180" y="180" width="1240" height="540" rx="40" fill="white"/>
+        <rect x="260" y="270" width="310" height="44" rx="22" fill="${palette[0]}" fill-opacity="0.12"/>
+        <rect x="260" y="360" width="520" height="30" rx="15" fill="${palette[1]}" fill-opacity="0.2"/>
+        <rect x="260" y="410" width="420" height="30" rx="15" fill="${palette[2]}" fill-opacity="0.18"/>
+        <rect x="260" y="500" width="210" height="110" rx="24" fill="${palette[0]}" fill-opacity="0.14"/>
+        <rect x="500" y="500" width="210" height="110" rx="24" fill="${palette[1]}" fill-opacity="0.16"/>
+        <rect x="740" y="500" width="210" height="110" rx="24" fill="${palette[2]}" fill-opacity="0.18"/>
+        <circle cx="1140" cy="455" r="130" fill="${palette[0]}" fill-opacity="0.14"/>
+        <circle cx="1140" cy="455" r="82" fill="${palette[1]}" fill-opacity="0.22"/>
+      </g>
+      <text x="260" y="245" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="700">${title}</text>
+    </svg>
+  `;
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
+function createCarousel(section, index) {
+  const slides = Array.isArray(section.carousel?.slides) ? section.carousel.slides : [];
+  if (!slides.length) return "";
+
+  const carouselId = `carousel-${index + 1}`;
+  const trackWidth = `${slides.length * 100}%`;
+  const slideWidth = `${100 / slides.length}%`;
+  return `
+    <div class="mt-10 rounded-[2rem] bg-white px-4 py-6 shadow-card dark:bg-slate-900 sm:px-6 lg:px-8" data-carousel id="${carouselId}" tabindex="0" aria-roledescription="carousel" aria-label="${escapeHtml(section.carousel?.title || section.title || "Section carousel")}">
+      <div class="relative">
+        <button class="absolute left-0 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-brand-300 hover:text-brand-600 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-brand-500/40 dark:hover:text-brand-300" type="button" data-carousel-prev aria-label="Previous slide">
+          <span aria-hidden="true">←</span>
+        </button>
+        <button class="absolute right-0 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-brand-300 hover:text-brand-600 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-brand-500/40 dark:hover:text-brand-300" type="button" data-carousel-next aria-label="Next slide">
+          <span aria-hidden="true">→</span>
+        </button>
+        <div class="overflow-hidden px-14 sm:px-16">
+          <div class="flex transition-transform duration-300 ease-out will-change-transform" data-carousel-track style="width: ${trackWidth};">
+            ${slides.map((slide, slideIndex) => `
+              <article class="shrink-0" style="width: ${slideWidth};" data-carousel-slide aria-roledescription="slide" aria-label="${escapeHtml(`${slideIndex + 1} of ${slides.length}`)}">
+                <div class="px-3 sm:px-4">
+                  ${slide.description ? `
+                    <div class="mb-5">
+                      <h3 class="text-2xl font-semibold tracking-[-0.03em] text-slate-950 dark:text-white">${escapeHtml(slide.label || "")}</h3>
+                      <p class="mt-3 max-w-3xl overflow-hidden text-ellipsis whitespace-nowrap text-base leading-8 text-slate-600 dark:text-slate-300">${escapeHtml(slide.description)}</p>
+                    </div>
+                  ` : ""}
+                  <img class="block w-full" src="${escapeHtml(createCarouselSlideImage(slide))}" alt="${escapeHtml(slide.label || "")}" draggable="false">
+                </div>
+              </article>
+            `).join("")}
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-2" data-carousel-dots>
+        ${slides.map((slide, slideIndex) => `
+          <button class="h-2.5 w-2.5 rounded-full bg-slate-300 transition hover:bg-brand-400 dark:bg-slate-700 dark:hover:bg-brand-400" type="button" data-carousel-dot data-slide-index="${slideIndex}" aria-label="${escapeHtml(`Go to ${slide.label || `slide ${slideIndex + 1}`}`)}"></button>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function createStatCard(item) {
+  return `
+    <article class="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/70">
+      <p class="text-3xl font-bold tracking-[-0.04em] text-slate-950 dark:text-white">${escapeHtml(item.value)}</p>
+      <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">${escapeHtml(item.label)}</p>
+      ${item.detail ? `<p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">${escapeHtml(item.detail)}</p>` : ""}
+    </article>
+  `;
+}
+
+function createProjectNavCard(project, direction) {
+  const label = direction === "previous" ? "Previous" : "Next";
+  const arrow = direction === "previous" ? "←" : "→";
+  const alignClass = direction === "previous" ? "items-start text-left" : "items-start text-left md:items-end md:text-right";
+
+  if (!project) {
+    return `
+      <div class="min-h-[88px] rounded-[1.25rem] border border-dashed border-slate-200/80 dark:border-slate-800"></div>
+    `;
+  }
+
+  return `
+    <a class="group flex min-h-[88px] flex-col justify-center rounded-[1.25rem] border border-slate-200 bg-white px-5 py-4 transition duration-200 hover:border-brand-300 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-brand-500/40 dark:hover:bg-slate-900 ${alignClass}" href="./project.html?id=${encodeURIComponent(project.id)}">
+      <div class="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+        <span>${direction === "previous" ? arrow : ""}</span>
+        <span>${label}</span>
+        <span>${direction === "next" ? arrow : ""}</span>
+      </div>
+      <h3 class="mt-3 text-lg font-semibold leading-tight tracking-[-0.02em] text-slate-950 transition group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-300">${escapeHtml(project.title)}</h3>
+    </a>
+  `;
+}
+
 function createRichSection(section, index) {
   const body = Array.isArray(section.body) ? section.body : section.body ? [section.body] : [];
   const cards = Array.isArray(section.cards) ? section.cards : [];
   const bullets = Array.isArray(section.bullets) ? section.bullets : [];
   const steps = Array.isArray(section.steps) ? section.steps : [];
+  const stats = Array.isArray(section.stats) ? section.stats : [];
+  const columns = Array.isArray(section.columns) ? section.columns : [];
+  const carousel = section.carousel ? createCarousel(section, index) : "";
   const badge = section.badge
     ? `<p class="mb-6 inline-flex rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-700 dark:border-brand-500/20 dark:bg-brand-500/10 dark:text-brand-200">${escapeHtml(section.badge)}</p>`
     : "";
@@ -143,21 +262,99 @@ function createRichSection(section, index) {
   return `
     <section class="border-t border-slate-200 px-4 py-12 dark:border-slate-800 sm:px-6 lg:px-8">
       <div class="mx-auto w-full max-w-7xl">
-        <div class="mb-7 flex gap-4">
-          <p class="min-w-10 text-3xl font-bold tracking-[-0.04em] text-slate-300 dark:text-slate-700">${String(index + 1).padStart(2, "0")}</p>
-          <div>
-            ${section.label ? `<p class="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">${escapeHtml(section.label)}</p>` : ""}
-            <h2 class="text-xl font-semibold tracking-[-0.02em] text-slate-950 dark:text-white">${escapeHtml(section.title || "")}</h2>
+        <div class="mb-10">
+          <p class="text-5xl font-bold tracking-[-0.05em] text-slate-300 dark:text-slate-700">${String(index + 1).padStart(2, "0")}</p>
+          <div class="mt-8">
+            ${section.label ? `<p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">${escapeHtml(section.label)}</p>` : ""}
+            <h2 class="max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-slate-950 dark:text-white sm:text-4xl">${escapeHtml(section.title || "")}</h2>
           </div>
         </div>
         ${badge}
         ${body.map((paragraph) => `<p class="mb-5 max-w-4xl text-base leading-8 text-slate-600 dark:text-slate-300">${escapeHtml(paragraph)}</p>`).join("")}
+        ${stats.length ? `<div class="mb-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">${stats.map(createStatCard).join("")}</div>` : ""}
+        ${columns.length ? `<div class="mb-8 grid gap-5 lg:grid-cols-2">${columns.map(createSectionColumn).join("")}</div>` : ""}
         ${cards.length ? `<div class="grid gap-5 lg:grid-cols-2">${cards.map(createInfoCard).join("")}</div>` : ""}
         ${bullets.length ? `<div class="mt-1">${createBulletList(bullets)}</div>` : ""}
         ${steps.length ? `<div class="grid gap-4">${steps.map(createStepCard).join("")}</div>` : ""}
+        ${carousel}
       </div>
     </section>
   `;
+}
+
+function initCarousel(root) {
+  const track = root.querySelector("[data-carousel-track]");
+  const slides = [...root.querySelectorAll("[data-carousel-slide]")];
+  const dots = [...root.querySelectorAll("[data-carousel-dot]")];
+  const prevButton = root.querySelector("[data-carousel-prev]");
+  const nextButton = root.querySelector("[data-carousel-next]");
+  if (!track || !slides.length || !prevButton || !nextButton) return;
+
+  let currentIndex = 0;
+  let touchStartX = null;
+  let touchDeltaX = 0;
+
+  function render() {
+    const currentSlide = slides[currentIndex];
+    const offset = currentSlide ? currentSlide.offsetLeft : 0;
+    track.style.transform = `translateX(-${offset}px)`;
+    prevButton.disabled = currentIndex === 0;
+    nextButton.disabled = currentIndex === slides.length - 1;
+    dots.forEach((dot, index) => {
+      const isActive = index === currentIndex;
+      dot.classList.toggle("bg-brand-500", isActive);
+      dot.classList.toggle("dark:bg-brand-400", isActive);
+      dot.classList.toggle("bg-slate-300", !isActive);
+      dot.classList.toggle("dark:bg-slate-700", !isActive);
+      dot.setAttribute("aria-current", isActive ? "true" : "false");
+    });
+  }
+
+  function goTo(index) {
+    currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+    render();
+  }
+
+  prevButton.addEventListener("click", () => goTo(currentIndex - 1));
+  nextButton.addEventListener("click", () => goTo(currentIndex + 1));
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => goTo(Number(dot.dataset.slideIndex)));
+  });
+
+  root.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      goTo(currentIndex - 1);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      goTo(currentIndex + 1);
+    }
+  });
+
+  root.addEventListener("touchstart", (event) => {
+    touchStartX = event.changedTouches[0]?.clientX ?? null;
+    touchDeltaX = 0;
+  }, { passive: true });
+
+  root.addEventListener("touchmove", (event) => {
+    if (touchStartX == null) return;
+    touchDeltaX = (event.changedTouches[0]?.clientX ?? touchStartX) - touchStartX;
+  }, { passive: true });
+
+  root.addEventListener("touchend", () => {
+    if (touchStartX == null) return;
+    if (touchDeltaX > 40) goTo(currentIndex - 1);
+    if (touchDeltaX < -40) goTo(currentIndex + 1);
+    touchStartX = null;
+    touchDeltaX = 0;
+  });
+
+  render();
+}
+
+function initCarousels() {
+  document.querySelectorAll("[data-carousel]").forEach(initCarousel);
 }
 
 function createLiteSections(project) {
@@ -207,15 +404,30 @@ function renderFound(project) {
   if (roleRoot) roleRoot.textContent = `${project.role} → ${project.roleDetail}`;
   if (summaryRoot) summaryRoot.textContent = project.description || project.summary;
   if (metaRoot) metaRoot.innerHTML = metaCards.map(createMetaCard).join("");
-  if (mediaRoot) mediaRoot.innerHTML = createHeroMedia(project);
+  if (showcaseSectionRoot) showcaseSectionRoot.hidden = !project.showcaseImageSrc;
+  if (showcaseRoot) showcaseRoot.innerHTML = createProjectShowcase(project);
 
   if (detailSectionsRoot) {
     detailSectionsRoot.innerHTML = project.detailLevel === "lite"
       ? createLiteSections(project)
       : getProjectSections(project).map(createRichSection).join("");
   }
-  if (outcomesLabelRoot) outcomesLabelRoot.textContent = project.outcomesLabel || "Outcomes";
-  if (outcomesRoot) outcomesRoot.innerHTML = (project.outcomes || []).map(createOutcomeCard).join("");
+  initCarousels();
+  const shouldShowOutcomes = !project.hideOutcomesSummary && Array.isArray(project.outcomes) && project.outcomes.length > 0;
+  if (outcomesSectionRoot) outcomesSectionRoot.hidden = !shouldShowOutcomes;
+  if (shouldShowOutcomes) {
+    if (outcomesLabelRoot) outcomesLabelRoot.textContent = project.outcomesLabel || "Outcomes";
+    if (outcomesRoot) outcomesRoot.innerHTML = (project.outcomes || []).map(createOutcomeCard).join("");
+  } else if (outcomesRoot) {
+    outcomesRoot.innerHTML = "";
+  }
+  if (paginationRoot && typeof getAdjacentProjects === "function") {
+    const { previous, next } = getAdjacentProjects(project.id);
+    paginationRoot.innerHTML = [
+      createProjectNavCard(previous, "previous"),
+      createProjectNavCard(next, "next"),
+    ].join("");
+  }
 
   if (foundRoot) foundRoot.hidden = false;
   if (notFoundRoot) notFoundRoot.hidden = true;
