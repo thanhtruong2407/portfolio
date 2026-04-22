@@ -165,6 +165,8 @@ window.portfolioContent = {
     {
       id: "featured-cihms",
       thumb: "PMS",
+      thumbImageSrc: "./assets/thumbnails/home-prj-thumbnail-cihms.png",
+      thumbImageAlt: "CiHMS project thumbnail showing hospitality system interfaces",
       role: "Hospitality / Platform",
       title: "Improving Operations in a Complex Hospitality System",
       summary: "Fragmented hotel workflows and inconsistent modules reduced efficiency -> redesigned workflow structure and system behavior -> improved usability, adoption, and operational confidence.",

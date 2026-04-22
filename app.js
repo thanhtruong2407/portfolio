@@ -59,11 +59,31 @@ function projectHref(projectId) {
   return `./project.html?id=${encodeURIComponent(projectId)}`;
 }
 
+function createProjectThumb(project) {
+  if (project.thumbImageSrc) {
+    return `
+      <div class="project-thumb aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-900" aria-hidden="true">
+        <img
+          class="block h-full w-full object-cover"
+          src="${escapeHtml(project.thumbImageSrc)}"
+          alt="${escapeHtml(project.thumbImageAlt || "")}"
+        >
+      </div>
+    `;
+  }
+
+  return `
+    <div class="project-thumb flex aspect-[16/10] items-center justify-center bg-gradient-to-br from-brand-100 via-white to-slate-100 text-5xl font-bold tracking-[-0.05em] text-brand-300 dark:from-brand-500/15 dark:via-slate-900 dark:to-slate-900 dark:text-brand-500/40" aria-hidden="true">
+      <span>${escapeHtml(project.thumb)}</span>
+    </div>
+  `;
+}
+
 function createFeaturedCard(project) {
   return `
     <article class="project-card reveal overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-card transition duration-200 hover:-translate-y-1 hover:border-brand-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-brand-500/40">
       <a class="project-trigger group block h-full w-full text-left" href="${projectHref(project.id)}">
-        <div class="project-thumb flex aspect-[16/10] items-center justify-center bg-gradient-to-br from-brand-100 via-white to-slate-100 text-5xl font-bold tracking-[-0.05em] text-brand-300 dark:from-brand-500/15 dark:via-slate-900 dark:to-slate-900 dark:text-brand-500/40" aria-hidden="true"><span>${escapeHtml(project.thumb)}</span></div>
+        ${createProjectThumb(project)}
         <div class="project-body p-7">
           <p class="project-kicker mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-300">${escapeHtml(project.role)}</p>
           <h3 class="project-title text-xl font-semibold leading-tight tracking-[-0.02em] text-slate-950 dark:text-white">${escapeHtml(project.title)}</h3>
