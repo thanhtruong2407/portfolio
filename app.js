@@ -80,11 +80,21 @@ function createProjectThumb(project) {
 }
 
 function createFeaturedCard(project) {
+  const isAvailable = project.isAvailable !== false;
+  const wrapperTag = isAvailable ? "a" : "div";
+  const href = isAvailable ? ` href="${projectHref(project.id)}"` : "";
+  const cardState = isAvailable
+    ? "View case study <span aria-hidden=\"true\">→</span>"
+    : "Coming soon";
+  const availabilityBadge = !isAvailable
+    ? `<span class="mb-4 inline-flex rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-700 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-200">Coming soon</span>`
+    : "";
   return `
     <article class="project-card reveal overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-card transition duration-200 hover:-translate-y-1 hover:border-brand-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-brand-500/40">
-      <a class="project-trigger group block h-full w-full text-left" href="${projectHref(project.id)}">
+      <${wrapperTag} class="project-trigger group block h-full w-full text-left"${href}>
         ${createProjectThumb(project)}
         <div class="project-body p-7">
+          ${availabilityBadge}
           <p class="project-kicker mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-300">${escapeHtml(project.role)}</p>
           <h3 class="project-title text-xl font-semibold leading-tight tracking-[-0.02em] text-slate-950 dark:text-white">${escapeHtml(project.title)}</h3>
           <p class="project-text mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">${escapeHtml(project.summary)}</p>
@@ -96,28 +106,35 @@ function createFeaturedCard(project) {
                 : "border-slate-200 bg-slate-50 text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"}`
             })))}
           </div>
-          <span class="card-cta mt-6 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-600 transition group-hover:text-brand-500 dark:text-brand-300 dark:group-hover:text-brand-200">View case study <span aria-hidden="true">→</span></span>
+          <span class="card-cta mt-6 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] ${isAvailable ? "text-brand-600 transition group-hover:text-brand-500 dark:text-brand-300 dark:group-hover:text-brand-200" : "text-amber-700 dark:text-amber-200"}">${cardState}</span>
         </div>
-      </a>
+      </${wrapperTag}>
     </article>
   `;
 }
 
 function createSupportingCard(project) {
+  const isAvailable = project.isAvailable !== false;
   const tags = Array.isArray(project.tags) ? project.tags : [];
+  const wrapperTag = isAvailable ? "a" : "div";
+  const href = isAvailable ? ` href="${projectHref(project.id)}"` : "";
+  const availabilityBadge = !isAvailable
+    ? `<span class="mb-4 inline-flex rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-700 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-200">Coming soon</span>`
+    : "";
   return `
     <article class="mini-card reveal overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-card transition duration-200 hover:-translate-y-1 hover:border-brand-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-brand-500/40">
-      <a class="mini-trigger group block h-full w-full text-left" href="${projectHref(project.id)}">
+      <${wrapperTag} class="mini-trigger group block h-full w-full text-left"${href}>
         <div class="mini-body p-6">
+          ${availabilityBadge}
           <p class="mini-kicker mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Supporting project</p>
           <h3 class="mini-title text-lg font-semibold leading-tight tracking-[-0.02em] text-slate-950 dark:text-white">${escapeHtml(project.title)}</h3>
           <p class="mini-text mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">${escapeHtml(project.summary)}</p>
           <div class="tag-row mt-5 flex flex-wrap gap-2.5">
             ${tags.map((tag) => `<span class="tag inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">${escapeHtml(typeof tag === "string" ? tag : tag.label)}</span>`).join("")}
           </div>
-          <span class="card-cta mt-6 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-600 transition group-hover:text-brand-500 dark:text-brand-300 dark:group-hover:text-brand-200">Open details <span aria-hidden="true">→</span></span>
+          <span class="card-cta mt-6 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] ${isAvailable ? "text-brand-600 transition group-hover:text-brand-500 dark:text-brand-300 dark:group-hover:text-brand-200" : "text-amber-700 dark:text-amber-200"}">${isAvailable ? "Open details <span aria-hidden=\"true\">→</span>" : "Coming soon"}</span>
         </div>
-      </a>
+      </${wrapperTag}>
     </article>
   `;
 }

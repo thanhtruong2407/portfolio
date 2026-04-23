@@ -12,10 +12,55 @@ if (!window.portfolioContent) {
     };
   }
 
+  function createComingSoonProject(project) {
+    return {
+      ...project,
+      isAvailable: false,
+      detailLevel: "lite",
+      roleDetail: "Case study coming soon",
+      description: "This project is selected for the portfolio, but the full case study page is still being prepared.",
+      overview: "This project has been selected as part of Thanh's product-oriented work, and a complete write-up with clearer context, contribution, and outcomes will be added soon.",
+      overviewCards: [
+        {
+          label: "Current status",
+          body: "The full project story is still being refined so the final case study can better reflect product thinking, constraints, and impact."
+        },
+        {
+          label: "Why it is included",
+          body: "It still represents relevant experience for the broader AI, SaaS, systems, and product narrative of the portfolio."
+        }
+      ],
+      dynamicLabel: "Status",
+      dynamicTitle: "Full case study in progress",
+      dynamicBadge: "Coming soon",
+      steps: [
+        {
+          title: "Selected",
+          text: "This project remains part of the portfolio because it supports the overall product and systems narrative."
+        },
+        {
+          title: "In progress",
+          text: "The detailed case study is still being prepared to better explain the context, contribution, and outcome."
+        },
+        {
+          title: "Next update",
+          text: "A fuller project page will replace this holding state once the final content is ready."
+        }
+      ],
+      outcomesLabel: "Availability",
+      outcomes: [
+        { value: "Soon", label: "Case study status" },
+        { value: "Live", label: "Project listed" },
+        { value: "Draft", label: "Detail page state" }
+      ]
+    };
+  }
+
   function createPlaceholderProjectFromSupporting(project) {
     return {
       id: project.id,
       detailLevel: "lite",
+      isAvailable: false,
       thumb: "Work",
       role: "Supporting project",
       title: project.title,
@@ -65,10 +110,16 @@ if (!window.portfolioContent) {
 
   function getProjectById(id) {
     const featured = (content.featuredProjects || []).find((project) => project.id === id);
-    if (featured) return { ...featured, detailLevel: "rich" };
+    if (featured) {
+      const normalizedFeatured = { ...featured, detailLevel: "rich" };
+      return featured.isAvailable === false ? createComingSoonProject(normalizedFeatured) : normalizedFeatured;
+    }
 
     const supporting = (content.supportingProjects || []).find((project) => project.id === id);
-    return supporting ? createPlaceholderProjectFromSupporting(supporting) : null;
+    if (!supporting) return null;
+    return supporting.isAvailable === false
+      ? createComingSoonProject(createPlaceholderProjectFromSupporting(supporting))
+      : createPlaceholderProjectFromSupporting(supporting);
   }
 
   function getProjectSequence() {
@@ -107,6 +158,7 @@ if (!window.portfolioContent) {
   }
 
   window.portfolioProjectData = {
+    createComingSoonProject,
     createPlaceholderProjectFromSupporting,
     getProjectById,
     getProjectSections,

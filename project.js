@@ -214,6 +214,20 @@ function createCarousel(section, index) {
   `;
 }
 
+function createSectionImage(section) {
+  if (!section.imageSrc) return "";
+  return `
+    <figure class="mt-10 overflow-hidden rounded-[2rem]">
+      <img
+        class="block w-full"
+        src="${escapeHtml(section.imageSrc)}"
+        alt="${escapeHtml(section.imageAlt || section.title || "")}"
+        loading="lazy"
+      >
+    </figure>
+  `;
+}
+
 function createStatCard(item) {
   return `
     <article class="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/70">
@@ -255,6 +269,7 @@ function createRichSection(section, index) {
   const stats = Array.isArray(section.stats) ? section.stats : [];
   const columns = Array.isArray(section.columns) ? section.columns : [];
   const carousel = section.carousel ? createCarousel(section, index) : "";
+  const sectionImage = createSectionImage(section);
   const badge = section.badge
     ? `<p class="mb-6 inline-flex rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-700 dark:border-brand-500/20 dark:bg-brand-500/10 dark:text-brand-200">${escapeHtml(section.badge)}</p>`
     : "";
@@ -276,6 +291,7 @@ function createRichSection(section, index) {
         ${cards.length ? `<div class="grid gap-5 lg:grid-cols-2">${cards.map(createInfoCard).join("")}</div>` : ""}
         ${bullets.length ? `<div class="mt-1">${createBulletList(bullets)}</div>` : ""}
         ${steps.length ? `<div class="grid gap-4">${steps.map(createStepCard).join("")}</div>` : ""}
+        ${sectionImage}
         ${carousel}
       </div>
     </section>

@@ -1,169 +1,8 @@
 window.portfolioContent = {
   featuredProjects: [
     {
-      id: "featured-textshadow-ai",
-      thumb: "Text",
-      role: "AI Product / Feature",
-      title: "Defining AI Behavior for Text Styling in Design Generation",
-      summary: "Inconsistent AI-generated text styles reduced design quality -> defined usage rules and trained AI behavior -> improved output consistency and usability.",
-      tags: [
-        { label: "AI", accent: true },
-        { label: "Validation" },
-        { label: "Product Thinking" }
-      ],
-      navIndex: "01 / Selected Work",
-      roleDetail: "AI behavior and validation case",
-      description: "Focused on improving AI-generated text styling quality by defining behavior rules, validating outputs, and reducing inconsistency in generated designs.",
-      timeline: "Visily.AI",
-      duration: "AI feature iteration",
-      overview: "This project centered on the quality gap between generated design output and usable design behavior. The work focused on defining text-style rules, training AI behavior, and validating whether generated results were consistent enough to support real workflows.",
-      overviewCards: [
-        {
-          label: "Your responsibility",
-          body: "Defined behavior rules, validated generated results, and translated quality issues into actionable guidance for improving AI design output."
-        },
-        {
-          label: "Team context",
-          body: "Worked in an AI product environment where design, product, and engineering needed clearer rules for output consistency and usability."
-        }
-      ],
-      dynamicLabel: "Project type",
-      dynamicTitle: "AI behavior improvement",
-      dynamicBadge: "AI product",
-      steps: [
-        {
-          title: "Problem framing",
-          text: "Identified inconsistent text styling as a quality issue that weakened design output and reduced trust in generated results."
-        },
-        {
-          title: "Approach and trade-offs",
-          text: "Defined usage rules and behavior expectations that could be applied consistently across AI-generated text outputs."
-        },
-        {
-          title: "Validation",
-          text: "Reviewed and validated outputs to confirm whether behavior changes actually improved consistency and usability."
-        },
-        {
-          title: "Outcome",
-          text: "Improved output quality by making AI text styling behavior more predictable and aligned with usable design patterns."
-        }
-      ],
-      outcomes: [
-        { value: "AI", label: "Behavior tuned" },
-        { value: "Text", label: "Style rules defined" },
-        { value: "Better", label: "Output consistency" }
-      ]
-    },
-    {
-      id: "featured-codegen-ai",
-      thumb: "Code",
-      role: "AI Product / Feature",
-      title: "Improving AI Code Generation for Responsive Layouts",
-      summary: "AI-generated layouts lacked responsiveness and usability -> trained AI on layout rules and validated outputs -> improved code quality and real-world usability.",
-      tags: [
-        { label: "AI", accent: true },
-        { label: "System Design" },
-        { label: "Validation" }
-      ],
-      navIndex: "02 / Selected Work",
-      roleDetail: "Responsive layout improvement case",
-      description: "Focused on improving AI-generated code quality for responsive layouts by teaching layout rules and validating the usability of generated results.",
-      timeline: "Visily.AI",
-      duration: "AI feature iteration",
-      overview: "The project addressed the gap between generated code and practical usability. AI output could generate layouts, but those layouts often failed under real responsive conditions, so the work focused on training, evaluation, and quality improvement.",
-      overviewCards: [
-        {
-          label: "Your responsibility",
-          body: "Trained AI on layout rules, validated generated outputs, and identified UX issues in responsive behavior."
-        },
-        {
-          label: "Team context",
-          body: "Worked across design and AI product concerns to improve real-world usability of generated frontend output."
-        }
-      ],
-      dynamicLabel: "Project type",
-      dynamicTitle: "Responsive AI code generation",
-      dynamicBadge: "AI / system",
-      steps: [
-        {
-          title: "Usability gap",
-          text: "Found that generated layouts looked acceptable at first glance but often broke down across responsive states and practical usage."
-        },
-        {
-          title: "Training rules",
-          text: "Defined layout rules and responsive expectations that the AI could follow more reliably during code generation."
-        },
-        {
-          title: "Validation",
-          text: "Reviewed generated output against responsive and usability expectations to confirm whether quality was meaningfully improving."
-        },
-        {
-          title: "Impact",
-          text: "Improved code quality and practical usability of generated responsive layouts."
-        }
-      ],
-      outcomes: [
-        { value: "AI", label: "Layout rules trained" },
-        { value: "Resp.", label: "Responsive quality improved" },
-        { value: "Higher", label: "Usability of output" }
-      ]
-    },
-    {
-      id: "featured-chatcentric-ai",
-      thumb: "Chat",
-      role: "AI Product / Research",
-      title: "Designing Chat-Centric UX for AI-Driven Design Workflows",
-      summary: "Traditional UI flows limited AI interaction efficiency -> explored chat-centric workflows and authoring tools -> improved usability of AI-driven design processes.",
-      tags: [
-        { label: "AI", accent: true },
-        { label: "UX Research" },
-        { label: "Product Thinking" }
-      ],
-      navIndex: "03 / Selected Work",
-      roleDetail: "Interaction model exploration",
-      description: "Explored chat-centric interaction patterns and authoring workflows to improve how users work with AI inside design processes.",
-      timeline: "Visily.AI",
-      duration: "Research exploration",
-      overview: "This work examined how traditional interface patterns constrained AI-assisted workflows and whether a more chat-centric approach could improve clarity, speed, and usability in AI-driven design tasks.",
-      overviewCards: [
-        {
-          label: "Your responsibility",
-          body: "Researched chat-centric interaction patterns, explored workflow concepts, and translated findings into more usable AI-driven design directions."
-        },
-        {
-          label: "Team context",
-          body: "Worked in an AI design product context where interaction design needed to adapt to new human-AI workflow models."
-        }
-      ],
-      dynamicLabel: "Project type",
-      dynamicTitle: "Chat-centric workflow design",
-      dynamicBadge: "AI / research",
-      steps: [
-        {
-          title: "Interaction challenge",
-          text: "Observed that traditional product flows were not always the best fit for AI-assisted creation and iteration."
-        },
-        {
-          title: "Workflow exploration",
-          text: "Tested chat-centric and authoring-oriented patterns that could better support iterative AI interactions."
-        },
-        {
-          title: "Usability focus",
-          text: "Evaluated how these patterns affected clarity, interaction efficiency, and the usability of AI-driven design processes."
-        },
-        {
-          title: "Result",
-          text: "Produced stronger direction for how AI-assisted design workflows could feel more natural, usable, and product-ready."
-        }
-      ],
-      outcomes: [
-        { value: "Chat", label: "Workflow model explored" },
-        { value: "UX", label: "Interaction clarity improved" },
-        { value: "AI", label: "Process usability strengthened" }
-      ]
-    },
-    {
       id: "featured-cihms",
+      isAvailable: true,
       thumb: "PMS",
       thumbImageSrc: "./assets/thumbnails/home-prj-thumbnail-cihms.png",
       thumbImageAlt: "CiHMS project thumbnail showing hospitality system interfaces",
@@ -178,7 +17,7 @@ window.portfolioContent = {
         { label: "Workflow Optimization" },
         { label: "Enterprise UX" }
       ],
-      navIndex: "04 / Selected Work",
+      navIndex: "01 / Selected Work",
       roleDetail: "Product Designer (UX/UI)",
       description: "Improved workflow structure and cross-module consistency in a 35+ module hospitality platform to reduce cognitive load, support real operational tasks, and strengthen adoption across multiple properties.",
       timeline: "2020-2021",
@@ -233,7 +72,9 @@ window.portfolioContent = {
             "Reduce task complexity and number of steps.",
             "Improve usability perception.",
             "Increase system adoption and preference."
-          ]
+          ],
+          imageSrc: "./assets/img-product-goal-relax.png",
+          imageAlt: "Product goal visual break"
         },
         {
           label: "Role and Collaboration",
@@ -445,29 +286,198 @@ window.portfolioContent = {
         { value: "3", label: "Countries reached" },
         { value: "85.28%", label: "Branch preference over Opera" }
       ]
+    },
+    {
+      id: "featured-textshadow-ai",
+      isAvailable: false,
+      thumb: "Text",
+      role: "AI Product / Feature",
+      title: "Defining AI Behavior for Text Styling in Design Generation",
+      summary: "Inconsistent AI-generated text styles reduced design quality -> defined usage rules and trained AI behavior -> improved output consistency and usability.",
+      tags: [
+        { label: "AI", accent: true },
+        { label: "Validation" },
+        { label: "Product Thinking" }
+      ],
+      navIndex: "02 / Selected Work",
+      roleDetail: "AI behavior and validation case",
+      description: "Focused on improving AI-generated text styling quality by defining behavior rules, validating outputs, and reducing inconsistency in generated designs.",
+      timeline: "Visily.AI",
+      duration: "AI feature iteration",
+      overview: "This project centered on the quality gap between generated design output and usable design behavior. The work focused on defining text-style rules, training AI behavior, and validating whether generated results were consistent enough to support real workflows.",
+      overviewCards: [
+        {
+          label: "Your responsibility",
+          body: "Defined behavior rules, validated generated results, and translated quality issues into actionable guidance for improving AI design output."
+        },
+        {
+          label: "Team context",
+          body: "Worked in an AI product environment where design, product, and engineering needed clearer rules for output consistency and usability."
+        }
+      ],
+      dynamicLabel: "Project type",
+      dynamicTitle: "AI behavior improvement",
+      dynamicBadge: "AI product",
+      steps: [
+        {
+          title: "Problem framing",
+          text: "Identified inconsistent text styling as a quality issue that weakened design output and reduced trust in generated results."
+        },
+        {
+          title: "Approach and trade-offs",
+          text: "Defined usage rules and behavior expectations that could be applied consistently across AI-generated text outputs."
+        },
+        {
+          title: "Validation",
+          text: "Reviewed and validated outputs to confirm whether behavior changes actually improved consistency and usability."
+        },
+        {
+          title: "Outcome",
+          text: "Improved output quality by making AI text styling behavior more predictable and aligned with usable design patterns."
+        }
+      ],
+      outcomes: [
+        { value: "AI", label: "Behavior tuned" },
+        { value: "Text", label: "Style rules defined" },
+        { value: "Better", label: "Output consistency" }
+      ]
+    },
+    {
+      id: "featured-codegen-ai",
+      isAvailable: false,
+      thumb: "Code",
+      role: "AI Product / Feature",
+      title: "Improving AI Code Generation for Responsive Layouts",
+      summary: "AI-generated layouts lacked responsiveness and usability -> trained AI on layout rules and validated outputs -> improved code quality and real-world usability.",
+      tags: [
+        { label: "AI", accent: true },
+        { label: "System Design" },
+        { label: "Validation" }
+      ],
+      navIndex: "03 / Selected Work",
+      roleDetail: "Responsive layout improvement case",
+      description: "Focused on improving AI-generated code quality for responsive layouts by teaching layout rules and validating the usability of generated results.",
+      timeline: "Visily.AI",
+      duration: "AI feature iteration",
+      overview: "The project addressed the gap between generated code and practical usability. AI output could generate layouts, but those layouts often failed under real responsive conditions, so the work focused on training, evaluation, and quality improvement.",
+      overviewCards: [
+        {
+          label: "Your responsibility",
+          body: "Trained AI on layout rules, validated generated outputs, and identified UX issues in responsive behavior."
+        },
+        {
+          label: "Team context",
+          body: "Worked across design and AI product concerns to improve real-world usability of generated frontend output."
+        }
+      ],
+      dynamicLabel: "Project type",
+      dynamicTitle: "Responsive AI code generation",
+      dynamicBadge: "AI / system",
+      steps: [
+        {
+          title: "Usability gap",
+          text: "Found that generated layouts looked acceptable at first glance but often broke down across responsive states and practical usage."
+        },
+        {
+          title: "Training rules",
+          text: "Defined layout rules and responsive expectations that the AI could follow more reliably during code generation."
+        },
+        {
+          title: "Validation",
+          text: "Reviewed generated output against responsive and usability expectations to confirm whether quality was meaningfully improving."
+        },
+        {
+          title: "Impact",
+          text: "Improved code quality and practical usability of generated responsive layouts."
+        }
+      ],
+      outcomes: [
+        { value: "AI", label: "Layout rules trained" },
+        { value: "Resp.", label: "Responsive quality improved" },
+        { value: "Higher", label: "Usability of output" }
+      ]
+    },
+    {
+      id: "featured-chatcentric-ai",
+      isAvailable: false,
+      thumb: "Chat",
+      role: "AI Product / Research",
+      title: "Designing Chat-Centric UX for AI-Driven Design Workflows",
+      summary: "Traditional UI flows limited AI interaction efficiency -> explored chat-centric workflows and authoring tools -> improved usability of AI-driven design processes.",
+      tags: [
+        { label: "AI", accent: true },
+        { label: "UX Research" },
+        { label: "Product Thinking" }
+      ],
+      navIndex: "04 / Selected Work",
+      roleDetail: "Interaction model exploration",
+      description: "Explored chat-centric interaction patterns and authoring workflows to improve how users work with AI inside design processes.",
+      timeline: "Visily.AI",
+      duration: "Research exploration",
+      overview: "This work examined how traditional interface patterns constrained AI-assisted workflows and whether a more chat-centric approach could improve clarity, speed, and usability in AI-driven design tasks.",
+      overviewCards: [
+        {
+          label: "Your responsibility",
+          body: "Researched chat-centric interaction patterns, explored workflow concepts, and translated findings into more usable AI-driven design directions."
+        },
+        {
+          label: "Team context",
+          body: "Worked in an AI design product context where interaction design needed to adapt to new human-AI workflow models."
+        }
+      ],
+      dynamicLabel: "Project type",
+      dynamicTitle: "Chat-centric workflow design",
+      dynamicBadge: "AI / research",
+      steps: [
+        {
+          title: "Interaction challenge",
+          text: "Observed that traditional product flows were not always the best fit for AI-assisted creation and iteration."
+        },
+        {
+          title: "Workflow exploration",
+          text: "Tested chat-centric and authoring-oriented patterns that could better support iterative AI interactions."
+        },
+        {
+          title: "Usability focus",
+          text: "Evaluated how these patterns affected clarity, interaction efficiency, and the usability of AI-driven design processes."
+        },
+        {
+          title: "Result",
+          text: "Produced stronger direction for how AI-assisted design workflows could feel more natural, usable, and product-ready."
+        }
+      ],
+      outcomes: [
+        { value: "Chat", label: "Workflow model explored" },
+        { value: "UX", label: "Interaction clarity improved" },
+        { value: "AI", label: "Process usability strengthened" }
+      ]
     }
   ],
   supportingProjects: [
     {
       id: "supporting-ciams",
+      isAvailable: false,
       title: "Improving Asset Tracking Efficiency in a Management System - CiAMS",
       summary: "Fragmented asset tracking workflows reduced operational visibility -> redesigned inventory flows and system structure -> improved tracking accuracy and efficiency.",
       tags: ["Enterprise", "System Design", "Optimization"]
     },
     {
       id: "supporting-cicrm",
+      isAvailable: false,
       title: "Enhancing Customer Management Workflows in a CRM Platform",
       summary: "Disconnected customer data and workflows reduced service efficiency -> restructured CRM flows and interfaces -> improved usability and customer handling experience.",
       tags: ["CRM", "System Design", "Product Thinking"]
     },
     {
       id: "supporting-ievm",
+      isAvailable: false,
       title: "Designing EV Charging and Vehicle Management Experience",
       summary: "Users struggled to manage charging and vehicle data efficiently -> designed intuitive flows for tracking and control -> improved usability and user experience.",
       tags: ["Automotive", "UX Design", "Journey Mapping"]
     },
     {
       id: "supporting-vineyard",
+      isAvailable: false,
       title: "Improving Hiring Efficiency with a Data-Driven Recruitment Platform",
       summary: "Recruitment workflows lacked visibility and efficiency -> designed dashboard and data-driven interfaces -> improved decision-making and hiring processes.",
       tags: ["HR Tech", "Data Visualization", "Product Thinking"]
